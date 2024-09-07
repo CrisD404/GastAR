@@ -1,12 +1,16 @@
 package person.entity;
 
+import java.util.UUID;
+
 public class Person {
 
+    private final UUID id = UUID.randomUUID();
     private final String name;
     private double totalSpending;
     private double totalContribution;
 
     public Person(String name){
+
         this.name = name;
         totalSpending = 0;
         totalContribution = 0;
@@ -40,6 +44,10 @@ public class Person {
 
     public double getTotalContribution() {
         return totalContribution;
+    }
+
+    public UUID getId(){
+        return this.id;
     }
 
 }
