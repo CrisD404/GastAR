@@ -1,4 +1,4 @@
-package person;
+package person.entity;
 
 public class Person {
 
@@ -41,9 +41,5 @@ public class Person {
     public double getTotalContribution() {
         return totalContribution;
     }
-
-
-
-
 
 }
