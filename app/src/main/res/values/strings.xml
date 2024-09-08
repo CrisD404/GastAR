@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GastAR</string>
+    <string name="person_icon_descriptor">Persona:</string>
 </resources>
