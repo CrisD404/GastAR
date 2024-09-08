@@ -1,4 +1,4 @@
-package person.entity;
+package com.example.gastar.person.entity;
 
 import java.util.UUID;
 

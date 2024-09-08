@@ -1,10 +1,10 @@
-package person.service;
+package com.example.gastar.person.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import person.entity.Person;
+import com.example.gastar.person.entity.Person;
 
 public class PersonService {
     private final List<Person> persons = new ArrayList<>();
