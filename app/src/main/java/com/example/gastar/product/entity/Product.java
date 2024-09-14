@@ -10,6 +10,13 @@ public class Product {
     private String category;
     private Double price;
 
+    public Product(String name, Integer quantity, String category, Double price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+        this.price = price;
+    }
+
     public UUID getId() {
         return id;
     }
