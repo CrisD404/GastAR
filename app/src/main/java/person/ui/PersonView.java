@@ -42,8 +42,8 @@ public class PersonView extends LinearLayout {
 
     public void updateLabels(){
         personNameView.setText(person.getName());
-        contributionView.setText(String.format("%f",person.getTotalContribution()));
-        SpendingView.setText(String.format("%f",person.getTotalSpending()));
+        contributionView.setText(String.valueOf(person.getTotalContribution()));
+        SpendingView.setText(String.valueOf(person.getTotalSpending()));
     }
 
 
