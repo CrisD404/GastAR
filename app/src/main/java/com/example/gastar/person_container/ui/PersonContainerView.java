@@ -1,9 +1,13 @@
 package com.example.gastar.person_container.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -43,6 +47,12 @@ public class PersonContainerView extends ConstraintLayout {
         inflate(context, R.layout.person_container_view,this);
         container = findViewById(R.id.person_list);
         addPersonButton = findViewById(R.id.add_person_button);
+        addPersonButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddDialog();
+            }
+        });
     }
 
     public void update(){
@@ -75,6 +85,35 @@ public class PersonContainerView extends ConstraintLayout {
 
     public Button getAddPersonButton() {
         return addPersonButton;
+    }
+
+    public void showAddDialog() {
+        Context context = this.getContext();
+        final EditText input = new EditText(context);
+        input.setHint("Nombre");
+
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(50, 40, 50, 10);
+        layout.addView(input);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Añadir persona")
+                .setView(layout)
+                .setPositiveButton("Añadir", (dialog, which) -> {
+                    String enteredText = input.getText().toString().trim();
+                    if (!enteredText.isEmpty()) {
+                        if(persons == null){
+                            throw new IllegalStateException("Persons List has not been initialized");
+                        }
+
+                        Toast.makeText(context, "Añadido: " + enteredText, Toast.LENGTH_SHORT).show();
+                        persons.add(new Person(enteredText));
+                        update();
+                    }
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss()) // Dismiss dialog on cancel
+                .show();
     }
 
 }
