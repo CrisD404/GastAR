@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gastar.R;
+import com.example.gastar.person.entity.Person;
 import com.example.gastar.product.entity.Product;
 import com.example.gastar.product.service.ProductService;
 import com.example.gastar.product.ui.CreateProductDialog;
@@ -24,6 +25,7 @@ import java.util.Locale;
 
 public class ProductController extends Fragment {
     private final ProductService productService = new ProductService();
+    private List<Person> personList;
 
     public ProductController() {
         super(R.layout.product_card);
@@ -35,6 +37,10 @@ public class ProductController extends Fragment {
         addProduct.setOnClickListener(v -> this.showAddProductModal());
 
         this.setProductComponent();
+    }
+
+    public void setPersonList(List<Person> persons){
+        personList = persons;
     }
 
     private void setProductComponent() {
@@ -62,7 +68,7 @@ public class ProductController extends Fragment {
                 //TODO: REPLACE FOR ONLY UPDATE METHOD
                 this.setProductComponent();
             }
-        });
+        },personList);
         createProductDialog.show(getParentFragmentManager(), "PRODUCT_DIALOG");
     }
 }

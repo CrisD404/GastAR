@@ -1,5 +1,7 @@
 package com.example.gastar.person.entity;
 
+import androidx.annotation.NonNull;
+
 import java.util.UUID;
 
 public class Person {
@@ -48,6 +50,12 @@ public class Person {
 
     public UUID getId(){
         return this.id;
+    }
+
+    @NonNull
+    @Override
+    public String toString(){
+        return name;
     }
 
 }
