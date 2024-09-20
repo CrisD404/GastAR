@@ -47,6 +47,9 @@ public class PersonController extends Fragment {
         recyclerView.setAdapter(personList);
     }
 
+    public PersonService getPersonService(){
+        return personService;
+    }
 
 
     public void showAddDialog() {

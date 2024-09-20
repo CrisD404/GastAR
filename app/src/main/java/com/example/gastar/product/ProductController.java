@@ -3,9 +3,9 @@ package com.example.gastar.product;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +17,7 @@ import com.example.gastar.R;
 import com.example.gastar.person.entity.Person;
 import com.example.gastar.product.entity.Product;
 import com.example.gastar.product.service.ProductService;
+import com.example.gastar.product.ui.ConsumerAdapter;
 import com.example.gastar.product.ui.CreateProductDialog;
 import com.example.gastar.product.ui.ProductList;
 
@@ -58,14 +59,31 @@ public class ProductController extends Fragment {
         CreateProductDialog createProductDialog = new CreateProductDialog((dialog, id)-> {
             EditText productNameField = ((AlertDialog) dialog).findViewById(R.id.productNameField);
             EditText productPriceField = ((AlertDialog) dialog).findViewById(R.id.productPriceField);
+            RecyclerView consumersFields = ((AlertDialog) dialog).findViewById(R.id.consumers_container);
+            Spinner contributorField = ((AlertDialog) dialog).findViewById(R.id.product_contributor);
 
+            ConsumerAdapter consumerAdapter = (ConsumerAdapter) consumersFields.getAdapter();
             String productName = productNameField.getText().toString();
             String productPrice = productPriceField.getText().toString();
-
             if(!productName.isEmpty() && !productPrice.isEmpty()) {
-                Product product = new Product(productName, 1, "Morfi", Double.parseDouble(productPrice));
+                double doublePrice = Double.parseDouble(productPrice);
+
+                Product product = new Product(productName, 1, "Morfi", doublePrice);
                 this.productService.add(product);
-                //TODO: REPLACE FOR ONLY UPDATE METHOD
+
+                Person contributor = (Person) contributorField.getSelectedItem();
+                contributor.addContribution(doublePrice);
+                assert consumerAdapter != null;
+                List<Person> consumers = consumerAdapter.getSelected();
+                for (Person c : consumers){
+                    for(Person p : personList){
+                        if(c.getId().equals(p.getId())){
+                            p.addSpending(doublePrice/ consumers.size());
+                        }
+                    }
+                }
+
+                //TODO: REPLACE FOR ONLY UPDATE METHOD // ALSO UPDATE PERSONS FRAGMENT
                 this.setProductComponent();
             }
         },personList);
