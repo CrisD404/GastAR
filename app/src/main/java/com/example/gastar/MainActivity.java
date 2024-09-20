@@ -1,25 +1,12 @@
 package com.example.gastar;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.gastar.product.entity.Product;
-import com.example.gastar.product.service.ProductService;
-import com.example.gastar.product.ui.CreateProductDialog;
-import com.example.gastar.product.ui.ProductList;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     @Override

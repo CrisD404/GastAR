@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,11 +8,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/products_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.gastar.product.ProductController"
-        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.gastar.person.PersonController"
+            android:id="@+id/persons_fragment"
+            tools:layout="@layout/product_card" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/products_fragment"
+            android:name="com.example.gastar.product.ProductController"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/product_card"/>
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>
