@@ -12,9 +12,7 @@ public class PersonView extends LinearLayout {
     private Person person;
     private ImageView iconView;
     private TextView personNameView;
-    private TextView contributionView;
-    private TextView SpendingView;
-
+    private TextView balanceView;
 
     public PersonView(Context context){
         super(context);
@@ -31,19 +29,11 @@ public class PersonView extends LinearLayout {
         inflate(context, R.layout.person_view, this);
         iconView = findViewById(R.id.person_icon);
         personNameView = findViewById(R.id.person_name);
-        contributionView = findViewById(R.id.person_contribution);
-        SpendingView = findViewById(R.id.person_spending);
+        balanceView = findViewById(R.id.person_balance);
     }
 
     public void setPerson(Person person){
         this.person = person;
     }
-
-    public void updateLabels(){
-        personNameView.setText(person.getName());
-        contributionView.setText(String.valueOf(person.getTotalContribution()));
-        SpendingView.setText(String.valueOf(person.getTotalSpending()));
-    }
-
 
 }

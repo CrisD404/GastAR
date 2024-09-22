@@ -20,15 +20,10 @@
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/person_contribution"
+        android:id="@+id/person_balance"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center" />
-    <TextView
-        android:id="@+id/person_spending"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center" />
+
 </LinearLayout>

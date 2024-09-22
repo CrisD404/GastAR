@@ -10,6 +10,7 @@ public class Person {
     private final String name;
     private double totalSpending;
     private double totalContribution;
+    private double balance = 0;
 
     public Person(String name){
 
@@ -26,10 +27,16 @@ public class Person {
 
     public void addSpending(double spending){
         totalSpending += spending;
+        balance -= spending;
     }
 
     public void addContribution(double contribution){
         totalContribution += contribution;
+        balance += contribution;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public void setTotalContribution(double totalContribution){

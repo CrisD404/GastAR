@@ -18,25 +18,21 @@ public class PersonList extends RecyclerView.Adapter<PersonList.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameLabel;
-        private final TextView contributionLabel;
-        private final TextView spendingLabel;
+        private final TextView balanceLabel;
 
         public ViewHolder(View view) {
             super(view);
             nameLabel = view.findViewById(R.id.person_name);
-            contributionLabel = view.findViewById(R.id.person_contribution);
-            spendingLabel = view.findViewById(R.id.person_spending);
+            balanceLabel = view.findViewById(R.id.person_balance);
         }
 
         public TextView getNameLabel() {
             return nameLabel;
         }
 
-        public TextView getContributionLabel() {
-            return contributionLabel;
+        public TextView getBalanceLabel() {
+            return balanceLabel;
         }
-
-        public TextView getSpendingLabel(){return spendingLabel;}
 
 
     }
@@ -56,9 +52,18 @@ public class PersonList extends RecyclerView.Adapter<PersonList.ViewHolder> {
 
     @Override
     public void onBindViewHolder(PersonList.ViewHolder viewHolder, final int position) {
+        double balance = persons.get(position).getBalance();
         viewHolder.getNameLabel().setText(persons.get(position).getName());
-        viewHolder.getContributionLabel().setText(String.valueOf(persons.get(position).getTotalContribution()));
-        viewHolder.getSpendingLabel().setText(String.valueOf(persons.get(position).getTotalSpending()));
+        TextView balanceLabel = viewHolder.getBalanceLabel();
+        int color;
+        if(balance < 0){
+            color = 0xFFEE1111; //red
+        }
+        else{
+            color = 0xFF00AB03; //green
+        }
+        balanceLabel.setText(String.valueOf(Math.abs(balance)));
+        balanceLabel.setTextColor(color);
     }
 
     @Override
