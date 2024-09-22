@@ -4,4 +4,9 @@
     <string name="add_element">Añadir</string>
     <string name="product_total_price">Total: $0.00</string>
     <string name="add_product">Agregar Producto</string>
+    <string name="add_product_modal_title">Agregar producto</string>
+    <string name="name_field_placeholder">Nombre</string>
+    <string name="price_field_placeholder">Precio</string>
+    <string name="payed_by_label">¿Quién pago por esto?</string>
+    <string name="add_food_eaters_label">Agrega comensales...</string>
 </resources>

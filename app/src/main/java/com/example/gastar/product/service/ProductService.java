@@ -4,25 +4,13 @@ import com.example.gastar.product.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ProductService {
     private final List<Product> products = new ArrayList<>();
 
-    public ProductService() {
-        Product p1 = new Product("Papas con cheddar", 1, "Morfi", 350.0);
-        Product p2 = new Product("Pizza napo", 1, "Morfi", 1200.0);
-        Product p3 = new Product("Empanada salteña", 1, "Morfi", 50.0);
-        Product p4 = new Product("Birra honey", 3, "Chupi", 350.0);
-        Product p5 = new Product("Coca 1l", 1, "Chupi", 1200.0);
-        Product p6 = new Product("Juguito de naranja", 1, "Chupi", 50.0);
-        products.add(p1);
-        products.add(p2);
-        products.add(p3);
-        products.add(p4);
-        products.add(p5);
-        products.add(p6);
-    }
+    public ProductService() {}
 
     public void add(Product product) {
         this.products.add(product);
@@ -33,7 +21,11 @@ public class ProductService {
     }
 
     public Product get(UUID uuid) {
-        return (Product) this.products.stream().filter(product -> product.getId() == uuid);
+        Optional<Product> product = products.stream().filter((p -> p.getId().equals(uuid))).findFirst();
+        if(!product.isPresent()) {
+            throw new RuntimeException("can't find product xd 404");
+        }
+        return product.get();
     }
 
     public List<Product> get() {

@@ -37,7 +37,7 @@ public class PersonController extends Fragment {
         this.setPersonComponent();
     }
 
-    private void setPersonComponent() {
+    public void setPersonComponent() {
         List<Person> persons = this.personService.get();
         RecyclerView recyclerView = getView().findViewById(R.id.productList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
