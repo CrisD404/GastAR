@@ -7,11 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManager;
-
-import com.example.gastar.person.PersonController;
-import com.example.gastar.person.entity.Person;
-import com.example.gastar.product.ProductController;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -24,9 +19,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        PersonController personController = (PersonController) fragmentManager.findFragmentById(R.id.persons_fragment);
-        ProductController productController = (ProductController) fragmentManager.findFragmentById(R.id.products_fragment);
-        productController.setPersonList(personController.getPersonService().get());
     }
 }

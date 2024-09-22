@@ -20,14 +20,8 @@ import com.example.gastar.R;
 import java.util.List;
 
 public class CreateProductDialog extends DialogFragment {
-    //todo: create an array of selected, and an array of to be selected.
-
-    private DialogInterface.OnClickListener clickListener;
-    private List<Person> persons;
-
-    public CreateProductDialog(DialogInterface.OnClickListener clickListener) {
-        this.clickListener = clickListener;
-    }
+    private final DialogInterface.OnClickListener clickListener;
+    private final List<Person> persons;
 
     public CreateProductDialog(DialogInterface.OnClickListener clickListener, List<Person> persons) {
         this.clickListener = clickListener;
@@ -55,12 +49,8 @@ public class CreateProductDialog extends DialogFragment {
 
         builder.setView(dialogView)
                 .setPositiveButton("Agregar", this.clickListener)
-                .setNegativeButton("Cancelar", (dialog, id) -> {
-                    // User cancels the dialog.
-                });
+                .setNegativeButton("Cancelar", (dialog, id) -> dialog.dismiss());
 
-
-        // Create the AlertDialog object and return it.
         return builder.create();
     }
 
