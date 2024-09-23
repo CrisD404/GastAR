@@ -14,10 +14,9 @@
 
     <TextView
         android:id="@+id/person_name"
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center" />
+        android:layout_weight="4" />
 
     <TextView
         android:id="@+id/person_balance"
