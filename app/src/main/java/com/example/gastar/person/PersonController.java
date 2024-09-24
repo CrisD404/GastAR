@@ -44,6 +44,10 @@ public class PersonController extends Fragment {
         PersonList personList = new PersonList(persons);
         TextView totalPrice = getView().findViewById(R.id.totalPriceTextView);
         totalPrice.setText("Personas"); // todo: move to variable;
+        TextView personHeader = getView().findViewById(R.id.entity_header);
+        TextView balanceHeader = getView().findViewById(R.id.value_header);
+        personHeader.setText("Nombre");
+        balanceHeader.setText("Balance");
         recyclerView.setAdapter(personList);
     }
 

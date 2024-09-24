@@ -53,6 +53,10 @@ public class ProductController extends Fragment {
         ProductList productList = new ProductList(products);
         TextView totalPrice = getView().findViewById(R.id.totalPriceTextView);
         String formatPrice = String.format(new Locale("es", "AR"), "Total: $%.2f", productList.getFullPrice());
+        TextView productHeader = getView().findViewById(R.id.entity_header);
+        TextView priceHeader = getView().findViewById(R.id.value_header);
+        productHeader.setText("Productos");
+        priceHeader.setText("Precio");
         totalPrice.setText(formatPrice);
         recyclerView.setAdapter(productList);
     }
