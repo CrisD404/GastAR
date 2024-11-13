@@ -28,6 +28,12 @@
             android:layout_height="wrap_content"
             tools:layout="@layout/product_card"/>
 
+        <Button
+            android:id="@+id/add_product_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+ Añadir producto" />
+
     </LinearLayout>
 
 
