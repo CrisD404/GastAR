@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:gravity="center_horizontal"
     android:layout_height="match_parent"
     tools:context=".AddProductActivity">
 
@@ -14,6 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/add_product_product_fields" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/person_fields"
@@ -25,7 +32,7 @@
 
     <Button
         android:id="@+id/add_product_new"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Añadir producto" />
 </LinearLayout>
