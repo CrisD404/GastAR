@@ -9,6 +9,13 @@
     android:layout_height="match_parent"
     tools:context=".AddProductActivity">
 
+    <TextView
+        android:id="@+id/product_fields_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Añadir Producto" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/product_fields"
         android:name="com.example.gastar.product.AddProductFragment"
@@ -19,8 +26,17 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/person_fields_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Añade personas" />
+
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/person_fields"

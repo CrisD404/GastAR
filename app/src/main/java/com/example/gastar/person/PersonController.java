@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gastar.Handler;
 import com.example.gastar.R;
 import com.example.gastar.person.entity.Person;
 import com.example.gastar.person.service.PersonService;
@@ -24,7 +25,7 @@ import com.example.gastar.person.ui.PersonList;
 import java.util.List;
 
 public class PersonController extends Fragment {
-    private final PersonService personService = new PersonService();
+    private final PersonService personService = Handler.getInstance().getPersonService();
 
     public PersonController(){super(R.layout.product_card);}
 
