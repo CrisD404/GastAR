@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.example.gastar.person.entity.Person;
 import com.example.gastar.person.service.PersonService;
 import com.example.gastar.product.AddProductFragment;
 import com.example.gastar.product.entity.Product;
+import com.example.gastar.product.exception.RequiredFieldException;
 import com.example.gastar.product.service.ProductService;
 
 import java.util.List;
@@ -51,10 +53,22 @@ public class AddProductActivity extends AppCompatActivity {
 
         AddProductFragment addProductFragment =  (AddProductFragment) getSupportFragmentManager().findFragmentById(R.id.product_fields);
         AddPersonFragment addPersonFragment = (AddPersonFragment) getSupportFragmentManager().findFragmentById(R.id.person_fields);
-        double price = addProductFragment.getInputPrice();
+        double price;
+
         String productName = addProductFragment.getNameInput();
         Person contributor = addPersonFragment.getContributor();
         List<Person> consumers = addPersonFragment.getConsumers();
+        try{
+            price = addProductFragment.getInputPrice();
+            if (consumers.isEmpty()){
+                throw new RequiredFieldException("Debes marcar al menos un comensal");
+            }
+        }
+        catch (RequiredFieldException ex) {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         personService.calculateSpending(consumers,price);
         personService.addContribution(contributor,price);
         Product product = new Product(productName,1,"morfi",price);
