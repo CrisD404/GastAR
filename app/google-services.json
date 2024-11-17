@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "454093504407",
+    "project_id": "gastar-701f6",
+    "storage_bucket": "gastar-701f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454093504407:android:8516859cb92ab8ead9ced2",
+        "android_client_info": {
+          "package_name": "com.example.gastar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnNi32B1sJT2AvduaSqR5Len0cOhAySl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
