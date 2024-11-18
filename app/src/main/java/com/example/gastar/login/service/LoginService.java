@@ -36,4 +36,8 @@ public class LoginService {
                 });
         return future;
     }
+
+    public void logout() {
+        this.mAuth.signOut();
+    }
 }

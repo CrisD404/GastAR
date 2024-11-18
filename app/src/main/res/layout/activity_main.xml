@@ -28,6 +28,16 @@
             android:layout_height="wrap_content"
             tools:layout="@layout/product_card"/>
 
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:backgroundTintMode="add"
+            android:text="@string/logout_btn"
+            android:textColor="#ED6767"
+            android:textColorLink="#FFFFFF" />
+
     </LinearLayout>
 
 

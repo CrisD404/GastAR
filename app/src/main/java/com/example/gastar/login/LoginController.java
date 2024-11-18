@@ -19,7 +19,7 @@ import com.example.gastar.person.PersonController;
 
 public class LoginController extends Fragment {
 
-    private LoginService loginService = new LoginService();
+    private final LoginService loginService = new LoginService();
     private EditText email;
     private EditText password;
     private ProgressBar loading;
@@ -57,13 +57,13 @@ public class LoginController extends Fragment {
         this.loading.setVisibility(View.VISIBLE);
         this.loginService.auth(email, password)
                 .thenAccept(user -> {
-                    this.loading.setVisibility(View.GONE);
                     Intent intent = new Intent(this.getContext(), MainActivity.class);
                     startActivity(intent);
+                    this.loading.setVisibility(View.GONE);
                 })
                 .exceptionally(err -> {
-                    this.loading.setVisibility(View.GONE);
                     this.showMessage("Las credenciales brindadas son incorrectas.");
+                    this.loading.setVisibility(View.GONE);
                     return null;
                 });
     }

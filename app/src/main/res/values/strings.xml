@@ -14,4 +14,5 @@
     <string name="login_btn_text">Ingresar</string>
     <string name="hint_email_login">elprofe@gastarapp.com.ar</string>
     <string name="hint_password_login">perritomalvado123</string>
+    <string name="logout_btn">Cerrar sesión</string>
 </resources>
