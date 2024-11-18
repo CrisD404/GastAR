@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    tools:context=".AddProductActivity">
+
+    <TextView
+        android:id="@+id/product_fields_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Añadir Producto" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/product_fields"
+        android:name="com.example.gastar.product.AddProductFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/add_product_product_fields" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/person_fields_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Añade personas" />
+
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/person_fields"
+        android:name="com.example.gastar.person.AddPersonFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        tools:layout="@layout/add_product_person_fields" />
+
+    <Button
+        android:id="@+id/add_product_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir producto" />
+</LinearLayout>
