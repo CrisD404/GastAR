@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.gastar.Handler;
 import com.example.gastar.MainActivity;
 import com.example.gastar.R;
 import com.example.gastar.login.service.LoginService;
@@ -19,7 +20,7 @@ import com.example.gastar.person.PersonController;
 
 public class LoginController extends Fragment {
 
-    private final LoginService loginService = new LoginService();
+    private final Handler handler = Handler.getInstance();
     private EditText email;
     private EditText password;
     private ProgressBar loading;
@@ -55,7 +56,7 @@ public class LoginController extends Fragment {
         }
 
         this.loading.setVisibility(View.VISIBLE);
-        this.loginService.auth(email, password)
+        this.handler.getLoginService().auth(email, password)
                 .thenAccept(user -> {
                     Intent intent = new Intent(this.getContext(), MainActivity.class);
                     startActivity(intent);

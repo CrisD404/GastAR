@@ -4,9 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,42 +21,35 @@ import com.example.gastar.R;
 import com.example.gastar.person.entity.Person;
 import com.example.gastar.person.service.PersonService;
 import com.example.gastar.person.ui.PersonList;
-
+import com.example.gastar.product.ui.ConsumerAdapter;
 
 import java.util.List;
 
-public class PersonController extends Fragment {
+public class AddPersonFragment  extends Fragment {
     private final PersonService personService = Handler.getInstance().getPersonService();
 
-    public PersonController(){super(R.layout.product_card);}
-
+    public AddPersonFragment(){
+        super(R.layout.add_product_person_fields);
+    }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        ImageButton addButton = view.findViewById(R.id.handleAddProduct);
-        addButton.setOnClickListener(v -> this.showAddDialog());
-
-        this.setPersonComponent();
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+        getView().findViewById(R.id.add_person_button).setOnClickListener((v)->showAddDialog());
+        setPersonComponent();
     }
 
-    public void setPersonComponent() {
+    public void setPersonComponent(){
+        View view = getView();
         List<Person> persons = this.personService.get();
-        RecyclerView recyclerView = getView().findViewById(R.id.productList);
+        ConsumerAdapter consumerAdapter = new ConsumerAdapter(persons);
+        RecyclerView recyclerView = view.findViewById(R.id.person_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        PersonList personList = new PersonList(persons);
-        TextView totalPrice = getView().findViewById(R.id.totalPriceTextView);
-        totalPrice.setText("Personas"); // todo: move to variable;
-        TextView personHeader = getView().findViewById(R.id.entity_header);
-        TextView balanceHeader = getView().findViewById(R.id.value_header);
-        personHeader.setText("Nombre");
-        balanceHeader.setText("Balance");
-        recyclerView.setAdapter(personList);
+        recyclerView.setAdapter(consumerAdapter);
+        Spinner contributorField = view.findViewById(R.id.food_payer);
+        ArrayAdapter<Person> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, persons);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        contributorField.setAdapter(spinnerAdapter);
     }
-
-    public PersonService getPersonService(){
-        return personService;
-    }
-
 
     public void showAddDialog() {
         Context context = this.getContext();
@@ -81,4 +75,16 @@ public class PersonController extends Fragment {
                 .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss()) // Dismiss dialog on cancel
                 .show();
     }
+
+    public Person getContributor(){
+        Spinner contributorField = getView().findViewById(R.id.food_payer);
+        return (Person) contributorField.getSelectedItem();
+    }
+
+    public List<Person> getConsumers(){
+        RecyclerView recyclerView = getView().findViewById(R.id.person_list);
+        ConsumerAdapter consumerAdapter = (ConsumerAdapter) recyclerView.getAdapter();
+        return consumerAdapter.getSelected();
+    }
+
 }

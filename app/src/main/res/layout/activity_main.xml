@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,10 +14,10 @@
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/persons_fragment"
+            android:name="com.example.gastar.person.PersonController"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="com.example.gastar.person.PersonController"
-            android:id="@+id/persons_fragment"
             tools:layout="@layout/product_card" />
 
         <androidx.fragment.app.FragmentContainerView
@@ -26,7 +25,13 @@
             android:name="com.example.gastar.product.ProductController"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout="@layout/product_card"/>
+            tools:layout="@layout/product_card" />
+
+        <Button
+            android:id="@+id/add_product_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_product_btn" />
 
         <Button
             android:id="@+id/logout_btn"
@@ -39,8 +44,5 @@
             android:textColorLink="#FFFFFF" />
 
     </LinearLayout>
-
-
-
 
 </ScrollView>

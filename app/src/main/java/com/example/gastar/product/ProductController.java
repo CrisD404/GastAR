@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gastar.Handler;
 import com.example.gastar.R;
 import com.example.gastar.person.PersonController;
 import com.example.gastar.person.entity.Person;
@@ -29,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class ProductController extends Fragment {
-    private final ProductService productService = new ProductService();
+    private final ProductService productService = Handler.getInstance().getProductService();
     private PersonController personController;
     private List<Person> personList;
 
@@ -46,7 +47,7 @@ public class ProductController extends Fragment {
         personList = personController.getPersonService().get();
     }
 
-    private void setProductComponent() {
+    public void setProductComponent() {
         List<Product> products = this.productService.get();
         RecyclerView recyclerView = getView().findViewById(R.id.productList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
