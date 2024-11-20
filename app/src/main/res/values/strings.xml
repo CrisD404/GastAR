@@ -9,4 +9,11 @@
     <string name="price_field_placeholder">Precio</string>
     <string name="payed_by_label">¿Quién pago por esto?</string>
     <string name="add_food_eaters_label">Agrega comensales...</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_password_label">Contraseña</string>
+    <string name="login_btn_text">Ingresar</string>
+    <string name="hint_email_login">elprofe@gastarapp.com.ar</string>
+    <string name="hint_password_login">perritomalvado123</string>
+    <string name="logout_btn">Cerrar sesión</string>
+    <string name="add_product_btn">+ Añadir producto</string>
 </resources>

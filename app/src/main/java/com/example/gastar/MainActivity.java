@@ -1,15 +1,23 @@
 package com.example.gastar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 import com.example.gastar.person.PersonController;
 import com.example.gastar.product.ProductController;
@@ -19,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            this.goTo(LoginActivity.class);
+            return;
+        }
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -28,15 +43,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button button = findViewById(R.id.add_product_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
+        Button addProductBtn = findViewById(R.id.add_product_button);
+        Button logoutBtn = findViewById(R.id.logout_btn);
 
-                startActivity(intent);
-            }
-        });
+        logoutBtn.setOnClickListener(v -> this.logout());
+        addProductBtn.setOnClickListener(v -> this.goTo(AddProductActivity.class));
+
     }
 
     @Override
@@ -50,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
         PersonController personController = (PersonController) getSupportFragmentManager().findFragmentById(R.id.persons_fragment);
         productController.setProductComponent();
         personController.setPersonComponent();
+    }
+
+    private void logout() {
+        this.handler.getLoginService().logout();
+        this.goTo(LoginActivity.class);
+    }
+
+    private <T extends Activity> void goTo(@NonNull Class<T> activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        startActivity(intent);
     }
 
 }
