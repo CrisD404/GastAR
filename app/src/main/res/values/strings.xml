@@ -16,4 +16,10 @@
     <string name="hint_password_login">perritomalvado123</string>
     <string name="logout_btn">Cerrar sesión</string>
     <string name="add_product_btn">+ Añadir producto</string>
+    <string name="product_name_hint">Nombre del producto...</string>
+    <string name="product_name_label">Nombre del producto:</string>
+    <string name="product_price_label">Precio del producto:</string>
+    <string name="add_product_title">Añadir Producto</string>
+    <string name="add_persons_title">Añade personas</string>
+    <string name="add_person_btn">+ Añadir persona</string>
 </resources>

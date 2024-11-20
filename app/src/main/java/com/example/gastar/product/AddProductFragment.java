@@ -47,7 +47,8 @@ public class AddProductFragment extends Fragment {
                 }
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
                 currencySelector.setAdapter(spinnerAdapter);
-                currencySelector.setSelection(19); // auto-select ars??
+                currencySelector.setSelection(1);
+
             }
 
             @Override
@@ -58,7 +59,6 @@ public class AddProductFragment extends Fragment {
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
         currencySelector.setAdapter(spinnerAdapter);
-
 
 
     }

@@ -31,8 +31,6 @@ import java.util.Locale;
 
 public class ProductController extends Fragment {
     private final ProductService productService = Handler.getInstance().getProductService();
-    private PersonController personController;
-    private List<Person> personList;
 
     public ProductController() {
         super(R.layout.product_card);
@@ -40,11 +38,7 @@ public class ProductController extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        ImageButton addProduct = view.findViewById(R.id.handleAddProduct);
-        addProduct.setOnClickListener(v -> this.showAddProductModal());
         this.setProductComponent();
-        personController = (PersonController) getParentFragmentManager().findFragmentById(R.id.persons_fragment);
-        personList = personController.getPersonService().get();
     }
 
     public void setProductComponent() {
@@ -62,57 +56,4 @@ public class ProductController extends Fragment {
         recyclerView.setAdapter(productList);
     }
 
-    private void showAddProductModal() {
-        if (personList.isEmpty()) {
-            Toast.makeText(getContext(), "Debes agregar almenos una persona a la lista", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        CreateProductDialog createProductDialog = new CreateProductDialog((dialog, id) -> {
-            EditText productNameField = ((AlertDialog) dialog).findViewById(R.id.productNameField);
-            EditText productPriceField = ((AlertDialog) dialog).findViewById(R.id.productPriceField);
-            RecyclerView consumersFields = ((AlertDialog) dialog).findViewById(R.id.consumers_container);
-            Spinner contributorField = ((AlertDialog) dialog).findViewById(R.id.product_contributor);
-            ConsumerAdapter consumerAdapter = (ConsumerAdapter) consumersFields.getAdapter();
-            String productName = productNameField.getText().toString();
-            String productPrice = productPriceField.getText().toString();
-            Person person = (Person) contributorField.getSelectedItem();
-            List<Person> consumers;
-            try {
-                if (productName.isEmpty()) {
-                    throw new RequiredFieldException("El campo 'nombre' es requerido");
-                }
-                if (productPrice.isEmpty()) {
-                    throw new RequiredFieldException("El campo 'precio' es requerido");
-                }
-                if (consumerAdapter == null) {
-                    throw new RequiredFieldException("Error al inicializar la vista de personas");
-                }
-                consumers = consumerAdapter.getSelected();
-                if(consumers.isEmpty()) {
-                    throw new RequiredFieldException("Se debe seleccionar al menos un comensal");
-                }
-            } catch (RequiredFieldException ex) {
-                Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Double doublePrice = Double.parseDouble(productPrice);
-            Product product = new Product(productName, 1, "Morfi", doublePrice);
-
-            try {
-                this.productService.add(product);
-                if (personController != null) {
-                    this.personController.getPersonService().calculateSpending(consumers, doublePrice);
-                    this.personController.getPersonService().addContribution(person, doublePrice);
-                    this.personController.setPersonComponent();
-                }
-            } catch (RuntimeException ex) {
-                Log.w("addProduct", "showAddProductModal: ", ex);
-            }
-
-            this.setProductComponent();
-        }, personList);
-        createProductDialog.show(getParentFragmentManager(), "PRODUCT_DIALOG");
-    }
 }
