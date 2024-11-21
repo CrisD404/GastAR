@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="21dp"
         android:scaleType="center"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:text="@string/payed_by_label"/>
 
     <Spinner
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="21dp"
         android:scaleType="center"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:text="@string/add_food_eaters_label"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -8,14 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/gray"
+        android:background="@color/secondary"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/person_fields_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-
+            android:padding="8dp"
             android:text="@string/add_persons_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
             android:id="@+id/add_person_button"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:background="@color/secondary"
             android:contentDescription="@string/add_product"
             android:src="@drawable/add_product_icon"
             app:layout_constraintBottom_toBottomOf="parent"

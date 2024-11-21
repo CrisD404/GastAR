@@ -3,7 +3,50 @@
     <style name="Base.Theme.GastAR" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Backgrounds -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:colorBackground">@color/background</item>
+
+        <!-- Primary Colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/secondary</item>
+        <item name="colorOnPrimary">@color/tertiary</item>
+
+        <!-- Secondary Colors -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/tertiary</item>
+        <item name="colorOnSecondary">@color/background</item>
+
+        <!-- Surface and Text -->
+        <item name="android:textColor">@color/white</item>
+        <item name="colorSurface">@color/primary</item>
+        <item name="colorOnSurface">@color/tertiary</item>
+        <item name="colorError">@color/red</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Inputs & selects    -->
+        <item name="android:spinnerStyle">@style/CustomSpinner</item>
+
+
     </style>
 
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <!-- Title bar color -->
+        <item name="android:background">@color/background</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/tertiary</item>
+
+        <!-- Button colors -->
+        <item name="colorPrimaryVariant">@color/primary</item>
+    </style>
+
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@color/primary</item>
+        <item name="android:spinnerDropDownItemStyle">@color/primary</item> <!-- Dropdown background color -->
+    </style>
+
+
     <style name="Theme.GastAR" parent="Base.Theme.GastAR" />
+
+
 </resources>

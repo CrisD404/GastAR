@@ -40,8 +40,9 @@
             android:backgroundTint="#FFFFFF"
             android:backgroundTintMode="add"
             android:text="@string/logout_btn"
-            android:textColor="#ED6767"
-            android:textColorLink="#FFFFFF" />
+            android:textColor="@color/red"
+            android:textColorLink="@color/tertiary"
+            />
 
     </LinearLayout>
 
