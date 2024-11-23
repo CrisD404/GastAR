@@ -22,6 +22,10 @@
             android:ems="10"
             android:hint="@string/hint_email_login"
             android:inputType="textEmailAddress"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:padding="4dp"
             android:labelFor="@+id/login_email_label" />
 
         <TextView
@@ -38,12 +42,18 @@
             android:ems="10"
             android:hint="@string/hint_password_login"
             android:inputType="textPassword"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:padding="4dp"
+
             android:labelFor="@+id/login_password_label" />
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@string/login_btn_text" />
 
         <ProgressBar

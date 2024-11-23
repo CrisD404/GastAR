@@ -38,6 +38,11 @@
 
         <!-- Button colors -->
         <item name="colorPrimaryVariant">@color/primary</item>
+
+        <!-- Text colors -->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/gray</item>
+
     </style>
 
     <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">

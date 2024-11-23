@@ -55,6 +55,8 @@ public class AddPersonFragment  extends Fragment {
         Context context = this.getContext();
         final EditText input = new EditText(context);
         input.setHint("Nombre");
+        input.setTextColor(0xFFFFFFFF);
+        input.setHintTextColor(0xFFAAAAAA);
 
         LinearLayout layout = new LinearLayout(context);
         layout.setBackgroundColor(0xFF171A4A);
