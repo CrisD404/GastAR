@@ -46,9 +46,14 @@ public class AddProductFragment extends Fragment {
                     currencyNames.add(n.toUpperCase());
                 }
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
-                currencySelector.setAdapter(spinnerAdapter);
-                currencySelector.setSelection(1);
+                requireActivity().runOnUiThread(()->{
+                    ArrayAdapter<String> newSpinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
+                    newSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    currencySelector.setAdapter(newSpinnerAdapter);
 
+                    // Post the selection to the main thread's message queue
+                    currencySelector.post(() -> currencySelector.setSelection(18));
+                });
             }
 
             @Override
@@ -56,10 +61,6 @@ public class AddProductFragment extends Fragment {
                 Log.e("API_FETCH_ERROR", e.toString());
             }
         });
-
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
-        currencySelector.setAdapter(spinnerAdapter);
-
 
     }
 
