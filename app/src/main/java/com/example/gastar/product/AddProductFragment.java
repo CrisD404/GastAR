@@ -87,9 +87,13 @@ public class AddProductFragment extends Fragment {
         return Double.parseDouble(numberStr) * (1/conversionFactor);
     }
 
-    public String getNameInput(){
+    public String getNameInput() throws RequiredFieldException{
         EditText nameInput = getView().findViewById(R.id.product_name_field);
-        return nameInput.getText().toString();
+        String name = nameInput.getText().toString();
+        if( name.isBlank()){
+            throw new RequiredFieldException("Ingresar nombre de producto");
+        }
+        return name;
     }
 
 }

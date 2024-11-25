@@ -54,11 +54,11 @@ public class AddProductActivity extends AppCompatActivity {
         AddProductFragment addProductFragment =  (AddProductFragment) getSupportFragmentManager().findFragmentById(R.id.product_fields);
         AddPersonFragment addPersonFragment = (AddPersonFragment) getSupportFragmentManager().findFragmentById(R.id.person_fields);
         double price;
-
-        String productName = addProductFragment.getNameInput();
+        String productName;
         Person contributor = addPersonFragment.getContributor();
         List<Person> consumers = addPersonFragment.getConsumers();
         try{
+            productName = addProductFragment.getNameInput();
             price = addProductFragment.getInputPrice();
             if (consumers.isEmpty()){
                 throw new RequiredFieldException("Debes marcar al menos un comensal");
