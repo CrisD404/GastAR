@@ -55,13 +55,17 @@ public class AddPersonFragment  extends Fragment {
         Context context = this.getContext();
         final EditText input = new EditText(context);
         input.setHint("Nombre");
+        input.setTextColor(0xFFFFFFFF);
+        input.setHintTextColor(0xFFAAAAAA);
 
         LinearLayout layout = new LinearLayout(context);
+        layout.setBackgroundColor(0xFF171A4A);
+
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 40, 50, 10);
         layout.addView(input);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.DialogTheme);
         builder.setTitle("Añadir persona")
                 .setView(layout)
                 .setPositiveButton("Añadir", (dialog, which) -> {

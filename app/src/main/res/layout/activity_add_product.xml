@@ -7,14 +7,10 @@
     android:layout_width="match_parent"
     android:gravity="center_horizontal"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_margin="10dp"
     tools:context=".AddProductActivity">
 
-    <TextView
-        android:id="@+id/product_fields_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text="Añadir Producto" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/product_fields"
@@ -29,12 +25,9 @@
         android:layout_height="3dp"
         android:background="?android:attr/listDivider" />
 
-    <TextView
-        android:id="@+id/person_fields_title"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Añade personas" />
+        android:layout_height="20dp" />
 
 
 
@@ -50,5 +43,5 @@
         android:id="@+id/add_product_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir producto" />
+        android:text="@string/add_product_btn" />
 </LinearLayout>

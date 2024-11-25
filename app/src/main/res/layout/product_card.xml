@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/background"
         android:layout_height="match_parent"
         android:padding="10dp">
 
@@ -14,7 +16,7 @@
             android:id="@+id/productToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#c1c1c1"
+            android:background="@color/secondary"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp"
@@ -34,13 +36,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/handleAddProduct"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="#c1c1c1"
-                android:contentDescription="@string/add_product"
-                android:src="@drawable/add_product_icon" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,8 +53,8 @@
                 android:id="@+id/entity_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:layout_weight="3" />
+                android:layout_weight="3"
+                android:paddingStart="16dp" />
 
             <TextView
                 android:id="@+id/value_header"
@@ -67,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingEnd="16dp"
-                android:textAlignment="textEnd"/>
+                android:textAlignment="textEnd" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

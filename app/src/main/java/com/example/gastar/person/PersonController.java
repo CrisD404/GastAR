@@ -32,8 +32,6 @@ public class PersonController extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        ImageButton addButton = view.findViewById(R.id.handleAddProduct);
-        addButton.setOnClickListener(v -> this.showAddDialog());
 
         this.setPersonComponent();
     }
@@ -57,28 +55,4 @@ public class PersonController extends Fragment {
     }
 
 
-    public void showAddDialog() {
-        Context context = this.getContext();
-        final EditText input = new EditText(context);
-        input.setHint("Nombre");
-
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(50, 40, 50, 10);
-        layout.addView(input);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Añadir persona")
-                .setView(layout)
-                .setPositiveButton("Añadir", (dialog, which) -> {
-                    String enteredText = input.getText().toString().trim();
-                    if (!enteredText.isEmpty()) {
-                        Toast.makeText(context, "Añadido: " + enteredText, Toast.LENGTH_SHORT).show();
-                        personService.add(new Person(enteredText));
-                        this.setPersonComponent();
-                    }
-                })
-                .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss()) // Dismiss dialog on cancel
-                .show();
-    }
 }
