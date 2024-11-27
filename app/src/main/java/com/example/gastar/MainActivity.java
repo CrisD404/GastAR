@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -14,10 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gastar.person.entity.Person;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
+import java.io.Serializable;
 
 import com.example.gastar.person.PersonController;
 import com.example.gastar.product.ProductController;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseApp.initializeApp(this);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
@@ -49,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener(v -> this.logout());
         addProductBtn.setOnClickListener(v -> this.goTo(AddProductActivity.class));
 
+        Serializable serializableExtra = getIntent().getSerializableExtra("fullName");
+        if (serializableExtra != null) {
+            String fullName = serializableExtra.toString();
+            Person person = new Person(fullName);
+            this.handler.getPersonService().add(person);
+        }
     }
 
     @Override
@@ -57,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         update();
     }
 
-    private void update(){
+    private void update() {
         ProductController productController = (ProductController) getSupportFragmentManager().findFragmentById(R.id.products_fragment);
         PersonController personController = (PersonController) getSupportFragmentManager().findFragmentById(R.id.persons_fragment);
         productController.setProductComponent();

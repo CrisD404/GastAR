@@ -22,4 +22,5 @@
     <string name="add_product_title">Añadir Producto</string>
     <string name="add_persons_title">Añade personas</string>
     <string name="add_person_btn">+ Añadir persona</string>
+    <string name="consume_by_label">¿Quien consumió esto?</string>
 </resources>
