@@ -45,11 +45,11 @@ public class LoginController extends Fragment {
         this.email = view.findViewById(R.id.login_email_field);
         this.password = view.findViewById(R.id.login_password_field);
         this.loading = view.findViewById(R.id.progress_loader);
-
         loginBtn.setOnClickListener(v -> this.login());
     }
 
     private void login() {
+        Handler.resetInstance();
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
 

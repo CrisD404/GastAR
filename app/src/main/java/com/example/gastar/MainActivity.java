@@ -51,7 +51,12 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener(v -> this.logout());
         addProductBtn.setOnClickListener(v -> this.goTo(AddProductActivity.class));
 
-
+        Serializable serializableExtra = getIntent().getSerializableExtra("fullName");
+        if (serializableExtra != null) {
+            String fullName = serializableExtra.toString();
+            Person person = new Person(fullName);
+            this.handler.getPersonService().add(person);
+        }
     }
 
     @Override
@@ -65,16 +70,6 @@ public class MainActivity extends AppCompatActivity {
         PersonController personController = (PersonController) getSupportFragmentManager().findFragmentById(R.id.persons_fragment);
         productController.setProductComponent();
         personController.setPersonComponent();
-
-        Serializable serializableExtra = getIntent().getSerializableExtra("fullName");
-        if (serializableExtra != null) {
-            String fullName = serializableExtra.toString();
-            Log.d("MainActivity", "Name: " + fullName);
-            Person person = new Person(fullName);
-            this.handler.getPersonService().add(person);
-        } else {
-            Log.d("MainActivity", "Name not found");
-        }
     }
 
     private void logout() {

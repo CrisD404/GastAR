@@ -34,4 +34,8 @@ public class Handler {
     public LoginService getLoginService() {
         return this.loginService;
     }
+
+    public static void resetInstance() {
+        instance = new Handler();
+    }
 }
