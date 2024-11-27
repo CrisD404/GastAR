@@ -82,6 +82,9 @@ Mas información en [Android Developers](https://developer.android.com/build/bui
 - [Google Spreadsheets](https://docs.google.com/spreadsheets/d/14udeTr_xGs5dVpWFQtsAp8GKPMyJWPqZSNJykFJ9eX0/edit?usp=sharing)
 
 ## Imágenes y capturas de la aplicación
+
+### Login
+![ss-login.png](docs/ss-login.png)
 ### Vista principal
 ![ss-home.png](docs/ss-home.png)
 ### Agregar producto
@@ -92,6 +95,20 @@ Mas información en [Android Developers](https://developer.android.com/build/bui
 - **Ingreso de Gastos**: Permite a los usuarios ingresar los detalles de los gastos.
 - **División Automática**: Calcula y divide automáticamente los gastos entre los participantes.
 - **Historial de Gastos**: Guarda un registro de todas las salidas y gastos realizados.
+
+### Funcionalidad por pantalla
+#### Login
+Los usuarios pueden iniciar sesión en la aplicación, requieriendo un mail y contraseña para hacerlo.
+#### Vista principal
+En la vista principal se ve el resumen de las personas y gastos que agregaste. Los gastos se dividen equitativamente
+entre las personas que han sido parte del gasto.  
+#### Agregar producto
+En esta pantalla, se puede agregar el nombre del gasto, la moneda en que se está pagando 
+(datos extraidos desde esta [API](https://github.com/fawazahmed0/exchange-api?tab=readme-ov-file)), 
+también se pueden agregar personas, seleccionar quien pagó el gasto y quienes están participando en el gasto,
+marcando diferentes checkboxes.
+Una vez agregados todos los campos necesarios, el botón de Añadir producto, agregará el producto y devolvera 
+al usuario devuelta a la vista principal.
 
 ## Requisitos del Sistema
 
