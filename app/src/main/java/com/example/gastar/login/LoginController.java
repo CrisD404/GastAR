@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.gastar.Handler;
 import com.example.gastar.MainActivity;
 import com.example.gastar.R;
+import com.example.gastar.RegisterActivity;
 import com.example.gastar.login.entity.User;
 import com.example.gastar.login.service.LoginService;
 import com.example.gastar.person.PersonController;
@@ -42,10 +43,15 @@ public class LoginController extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         Button loginBtn = view.findViewById(R.id.login_btn);
+        Button gotoRegisterBtn = view.findViewById(R.id.goto_register_btn);
         this.email = view.findViewById(R.id.login_email_field);
         this.password = view.findViewById(R.id.login_password_field);
         this.loading = view.findViewById(R.id.progress_loader);
         loginBtn.setOnClickListener(v -> this.login());
+        gotoRegisterBtn.setOnClickListener(v-> {
+            Intent intent = new Intent(this.getContext(), RegisterActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void login() {
