@@ -72,7 +72,16 @@ public class RegisterController extends Fragment {
             this.showMessage("La contraseña ingresada no es válida");
             return;
         }
-        //todo: add name, surname validation
+
+        if(!name.isBlank()){
+            this.showMessage("Ingresa tu nombre");
+            return;
+        }
+
+        if(!surname.isBlank()){
+            this.showMessage("Ingresa tu apellido");
+            return;
+        }
 
 
 
