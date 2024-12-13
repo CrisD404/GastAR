@@ -9,13 +9,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/login_email_label"
+            android:id="@+id/register_email_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_email_label" />
 
+
         <EditText
-            android:id="@+id/login_email_field"
+            android:id="@+id/register_email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
@@ -26,16 +27,16 @@
             android:textColor="@color/white"
             android:textColorHint="@color/gray"
             android:padding="4dp"
-            android:labelFor="@+id/login_email_label" />
+            android:labelFor="@+id/register_email_label" />
 
         <TextView
-            android:id="@+id/login_password_label"
+            android:id="@+id/register_password_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_password_label" />
 
         <EditText
-            android:id="@+id/login_password_field"
+            android:id="@+id/register_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="password"
@@ -47,20 +48,64 @@
             android:textColorHint="@color/gray"
             android:padding="4dp"
 
-            android:labelFor="@+id/login_password_label" />
+            android:labelFor="@+id/register_password_label" />
+
+        <TextView
+            android:id="@+id/register_name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_name_label" />
+
+
+        <EditText
+            android:id="@+id/register_name_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:ems="10"
+            android:hint="@string/register_name_hint"
+            android:inputType="textEmailAddress"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:padding="4dp"
+            android:labelFor="@+id/register_name_label" />
+
+        <TextView
+            android:id="@+id/register_surname_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_surname_label" />
+
+
+        <EditText
+            android:id="@+id/register_surname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:ems="10"
+            android:hint="@string/register_surname_hint"
+            android:inputType="textEmailAddress"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:padding="4dp"
+            android:labelFor="@+id/register_surname_label" />
+
 
         <Button
-            android:id="@+id/login_btn"
+            android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/login_btn_text" />
+            android:text="@string/register_action" />
+
         <Button
-            android:id="@+id/goto_register_btn"
+            android:id="@+id/goto_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/register_action"
+            android:text="@string/login_btn_text"
             />
 
         <ProgressBar

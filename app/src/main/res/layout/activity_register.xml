@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <TextView
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:text="@string/login_btn_text"
+        android:text="@string/register_action"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,14 +32,13 @@
         tools:layout_editor_absoluteY="150dp">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/login_form"
-            android:name="com.example.gastar.login.LoginController"
+            android:id="@+id/register_form"
+            android:name="com.example.gastar.register.RegisterController"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/login_form" />
 
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

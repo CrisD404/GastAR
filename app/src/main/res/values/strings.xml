@@ -23,4 +23,9 @@
     <string name="add_persons_title">Añade personas</string>
     <string name="add_person_btn">+ Añadir persona</string>
     <string name="consume_by_label">¿Quien consumió esto?</string>
+    <string name="register_action">Registrarse</string>
+    <string name="register_surname_hint">Argento</string>
+    <string name="register_surname_label">Apellido</string>
+    <string name="register_name_hint">Pepe</string>
+    <string name="register_name_label">Nombre</string>
 </resources>
