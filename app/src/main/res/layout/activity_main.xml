@@ -15,6 +15,13 @@
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/profile_toolbar"
+            android:name="com.example.gastar.profile.ProfileController"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/profile_toolbar" />
+
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/persons_fragment"
             android:name="com.example.gastar.person.PersonController"
             android:layout_width="match_parent"
@@ -36,15 +43,13 @@
 
         <Button
             android:id="@+id/logout_btn"
-
-            android:backgroundTint="@color/background"
-            android:backgroundTintMode="add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/background"
+            android:backgroundTintMode="add"
             android:text="@string/logout_btn"
             android:textColor="@color/red"
-            android:textColorLink="@color/tertiary"
-            />
+            android:textColorLink="@color/tertiary" />
 
     </LinearLayout>
 

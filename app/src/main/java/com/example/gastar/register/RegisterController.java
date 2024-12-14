@@ -49,13 +49,13 @@ public class RegisterController extends Fragment {
         this.loading = view.findViewById(R.id.progress_loader);
 
         registerBtn.setOnClickListener(v -> this.register());
-        gotoLogin.setOnClickListener(v-> {
+        gotoLogin.setOnClickListener(v -> {
             Intent intent = new Intent(this.getContext(), LoginActivity.class);
             startActivity(intent);
         });
     }
 
-    private void register(){
+    private void register() {
         Handler.resetInstance();
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
@@ -73,40 +73,40 @@ public class RegisterController extends Fragment {
             return;
         }
 
-        if(!name.isBlank()){
+        if (!name.isBlank()) {
             this.showMessage("Ingresa tu nombre");
             return;
         }
 
-        if(!surname.isBlank()){
+        if (!surname.isBlank()) {
             this.showMessage("Ingresa tu apellido");
             return;
         }
 
 
-
         this.loading.setVisibility(View.VISIBLE);
         this.handler.getRegisterService().register(email, password)
                 .thenAccept(user -> {
+                    String defaultImg = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     CollectionReference usersRef = db.collection("users");
                     Map<String, Object> userData = new HashMap<>();
                     userData.put("active", true);
                     userData.put("email", email);
+                    userData.put("imgUrl", defaultImg);
                     userData.put("name", name);
                     userData.put("lastName", surname);
                     userData.put("uid", user.getUid());
                     usersRef.document(user.getUid()).set(userData).addOnCompleteListener(task -> {
-                        if(task.isSuccessful()){
-                            Log.d("RegisterController","Successfully created user data");
-                            User userObj = new User(user.getUid(),name,surname, email, true);
+                        if (task.isSuccessful()) {
+                            Log.d("RegisterController", "Successfully created user data");
+                            User userObj = new User(user.getUid(), name, surname, email, true);
                             Intent intent = new Intent(this.getContext(), MainActivity.class);
-                                    Log.d("RegisterController", "fullName: " + name + " " + surname);
-                                    intent.putExtra("fullName", name + " " + surname);
-                                    startActivity(intent);
-                                    this.loading.setVisibility(View.GONE);
-                        }
-                        else {
+                            Log.d("RegisterController", "fullName: " + name + " " + surname);
+                            intent.putExtra("fullName", name + " " + surname);
+                            startActivity(intent);
+                            this.loading.setVisibility(View.GONE);
+                        } else {
                             Log.e("RegisterController", "Error creating documents: ", task.getException());
                             this.loading.setVisibility(View.GONE);
                         }
@@ -124,7 +124,6 @@ public class RegisterController extends Fragment {
         Toast.makeText(this.getContext(), message,
                 Toast.LENGTH_SHORT).show();
     }
-
 
 
 }
