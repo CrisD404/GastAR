@@ -1,6 +1,10 @@
 package com.example.gastar.profile.service;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.example.gastar.login.entity.User;
 import com.example.gastar.profile.dto.UserProfileDto;
@@ -9,13 +13,22 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class ProfileService {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseAuth user = FirebaseAuth.getInstance();
+    private final OkHttpClient client = new OkHttpClient();
 
     public CompletableFuture<UserProfileDto> getProfile() {
         CompletableFuture<UserProfileDto> future = new CompletableFuture<>();
@@ -70,6 +83,28 @@ public class ProfileService {
             } else {
                 Log.d("ProfileController", "Error getting documents: ", task.getException());
                 future.completeExceptionally(new Exception("Error getting documents"));
+            }
+        });
+
+        return future;
+    }
+
+    public CompletableFuture<Bitmap> getImage(String url) {
+        CompletableFuture<Bitmap> future = new CompletableFuture<>();
+        Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                future.completeExceptionally(new Exception("Error"));
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                InputStream inputStream = response.body().byteStream();
+                final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                future.complete(bitmap);
             }
         });
 

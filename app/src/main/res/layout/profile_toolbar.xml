@@ -33,16 +33,16 @@
             android:layout_gravity="start"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="TextView" />
+            android:text="@string/profile_name" />
 
         <Button
             android:id="@+id/edit_profile_btn"
             android:layout_gravity="end"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="EDITAR"
+            android:text="@string/edit_btn"
             android:textColor="@color/white"
             android:textColorLink="@color/tertiary"
-            android:textSize="10dp" />
+            android:textSize="11sp" />
     </androidx.appcompat.widget.Toolbar>
 </LinearLayout>

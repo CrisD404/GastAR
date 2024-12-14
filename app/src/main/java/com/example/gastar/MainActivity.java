@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         update();
     }
 
-    private void update() {
+    public void update() {
         ProductController productController = (ProductController) getSupportFragmentManager().findFragmentById(R.id.products_fragment);
         PersonController personController = (PersonController) getSupportFragmentManager().findFragmentById(R.id.persons_fragment);
         productController.setProductComponent();

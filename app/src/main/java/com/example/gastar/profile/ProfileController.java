@@ -1,6 +1,8 @@
 package com.example.gastar.profile;
 
 import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +18,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.gastar.Handler;
+import com.example.gastar.MainActivity;
 import com.example.gastar.R;
+import com.example.gastar.person.entity.Person;
 import com.example.gastar.profile.dto.UserProfileDto;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ProfileController extends Fragment {
     private final Handler handler = Handler.getInstance();
@@ -39,13 +52,29 @@ public class ProfileController extends Fragment {
     }
 
     public void getProfile() {
-        this.handler.getProfileService().getProfile().thenAccept(user -> {
-            Uri imgUri = Uri.parse(user.getImgUrl());
-            String fullName = user.getName() + " " + user.getLastName();
-            this.imgViewField.setImageURI(imgUri);
-            this.fullNameField.setText(fullName);
+        handler.getProfileService().getProfile().thenAccept(user -> {
+            handler.getProfileService().getImage(user.getImgUrl()).thenAccept(bitmap -> {
+                requireActivity().runOnUiThread(() -> {
+                    imgViewField.setImageBitmap(bitmap);
+                    String fullName = user.getName() + " " + user.getLastName();
+                    fullNameField.setText(fullName);
+                    if (!this.handler.getPersonService().get().isEmpty()) {
+                        Person person = this.handler.getPersonService().get().get(0);
+                        person.setName(fullName);
+                        this.handler.getPersonService().update(person.getId(), person);
+                        ((MainActivity) getActivity()).update();
+                    }
+                });
+            }).exceptionally(throwable -> {
+                Log.e("ProfileFragment", "Error fetching image", throwable);
+                return null;
+            });
+        }).exceptionally(throwable -> {
+            Log.e("ProfileFragment", "Error fetching profile", throwable);
+            return null;
         });
     }
+
 
     public void editProfile() {
         final EditText nameInput = new EditText(getContext());
@@ -72,7 +101,7 @@ public class ProfileController extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.DialogTheme);
         builder.setTitle("Editar perfil")
                 .setView(layout)
-                .setPositiveButton("Añadir", (dialog, which) -> {
+                .setPositiveButton("Aceptar", (dialog, which) -> {
                     String name = nameInput.getText().toString().trim();
                     String lastName = lastNameInput.getText().toString().trim();
                     String uri = imgUriInput.getText().toString().trim();
@@ -83,9 +112,9 @@ public class ProfileController extends Fragment {
                         userProfileDto.setImgUrl(uri);
                         this.handler.getProfileService().updateProfile(userProfileDto).thenAccept(isSuccess -> {
                             Toast.makeText(getContext(), "Perfil editado con éxito", Toast.LENGTH_SHORT).show();
+                            this.getProfile();
                         }).exceptionally(err -> {
                             Toast.makeText(getContext(), "Error al editar el perfil", Toast.LENGTH_SHORT).show();
-                            this.getProfile();
                             return null;
                         });
                     }

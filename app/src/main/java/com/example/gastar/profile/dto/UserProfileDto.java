@@ -1,6 +1,11 @@
 package com.example.gastar.profile.dto;
 
+import java.util.UUID;
+
 public class UserProfileDto {
+    private String uid;
+    private String email;
+    private Boolean active;
     private String name;
     private String lastName;
     private String imgUrl;
@@ -27,5 +32,25 @@ public class UserProfileDto {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

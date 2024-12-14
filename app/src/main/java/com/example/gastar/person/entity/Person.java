@@ -5,32 +5,30 @@ import androidx.annotation.NonNull;
 import java.util.UUID;
 
 public class Person {
-
     private final UUID id = UUID.randomUUID();
-    private final String name;
+    private String name;
     private double totalSpending;
     private double totalContribution;
     private double balance = 0;
 
-    public Person(String name){
-
+    public Person(String name) {
         this.name = name;
         totalSpending = 0;
         totalContribution = 0;
     }
 
-    public Person(String name, double spending, double contribution){
+    public Person(String name, double spending, double contribution) {
         this.name = name;
         totalSpending = spending;
         totalContribution = contribution;
     }
 
-    public void addSpending(double spending){
+    public void addSpending(double spending) {
         totalSpending += spending;
         balance -= spending;
     }
 
-    public void addContribution(double contribution){
+    public void addContribution(double contribution) {
         totalContribution += contribution;
         balance += contribution;
     }
@@ -39,7 +37,7 @@ public class Person {
         return balance;
     }
 
-    public void setTotalContribution(double totalContribution){
+    public void setTotalContribution(double totalContribution) {
         this.totalContribution = totalContribution;
     }
 
@@ -55,13 +53,17 @@ public class Person {
         return totalContribution;
     }
 
-    public UUID getId(){
+    public UUID getId() {
         return this.id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @NonNull
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
