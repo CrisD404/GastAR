@@ -49,7 +49,8 @@ public class ProductList extends RecyclerView.Adapter<ProductList.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.getNameLabel().setText(products.get(position).getName());
-        viewHolder.getPriceLabel().setText(products.get(position).getPrice().toString());
+        Double price = products.get(position).getPrice();
+        viewHolder.getPriceLabel().setText(String.format("%.2f", price));
     }
 
     @Override

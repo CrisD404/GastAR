@@ -45,14 +45,12 @@ public class AddProductFragment extends Fragment {
                     String n = keys.next();
                     currencyNames.add(n.toUpperCase());
                 }
-                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
                 requireActivity().runOnUiThread(()->{
                     ArrayAdapter<String> newSpinnerAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_spinner_item, currencyNames);
                     newSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     currencySelector.setAdapter(newSpinnerAdapter);
-
                     // Post the selection to the main thread's message queue
-                    currencySelector.post(() -> currencySelector.setSelection(18));
+                    currencySelector.post(()-> currencySelector.setSelection(17));
                 });
             }
 
@@ -83,7 +81,6 @@ public class AddProductFragment extends Fragment {
         if(numberStr.isEmpty()){
             throw new RequiredFieldException("Ingresar precio");
         }
-
         return Double.parseDouble(numberStr) * (1/conversionFactor);
     }
 
